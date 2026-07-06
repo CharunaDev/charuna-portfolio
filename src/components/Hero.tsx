@@ -31,7 +31,7 @@ export function Hero() {
             </a>
           </div>
         </div>
-        <div className="border-border bg-surface relative mx-auto aspect-square w-56 overflow-hidden rounded-3xl border shadow-[0_0_60px_-15px_rgba(139,92,246,0.5)] sm:w-72">
+        <div className="border-border bg-surface relative mx-auto aspect-square w-56 overflow-hidden rounded-full border shadow-[0_0_60px_-15px_rgba(139,92,246,0.5)] sm:w-72">
           <Image
             src="/profile.jpg"
             alt="Charuna Amarasinghe"
