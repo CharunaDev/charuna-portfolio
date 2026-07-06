@@ -27,16 +27,20 @@ interface LanguageBarProps {
 
 function LanguageBar({ language, index, isInView }: LanguageBarProps) {
   const [displayPercent, setDisplayPercent] = useState(0);
+  const displayPercentRef = useRef(0);
   const color = LANGUAGE_COLORS[language.name] ?? FALLBACK_COLOR;
   const delay = index * STAGGER_SECONDS;
 
   useEffect(() => {
-    if (!isInView) return;
-    const controls = animate(0, language.percent, {
+    const target = isInView ? language.percent : 0;
+    const controls = animate(displayPercentRef.current, target, {
       duration: DURATION_SECONDS,
-      delay,
+      delay: isInView ? delay : 0,
       ease: 'easeOut',
-      onUpdate: setDisplayPercent,
+      onUpdate: (value) => {
+        displayPercentRef.current = value;
+        setDisplayPercent(value);
+      },
     });
     return () => controls.stop();
   }, [isInView, language.percent, delay]);
@@ -53,7 +57,7 @@ function LanguageBar({ language, index, isInView }: LanguageBarProps) {
           style={{ backgroundColor: color }}
           initial={{ width: 0 }}
           animate={{ width: isInView ? `${language.percent}%` : 0 }}
-          transition={{ duration: DURATION_SECONDS, delay, ease: 'easeOut' }}
+          transition={{ duration: DURATION_SECONDS, delay: isInView ? delay : 0, ease: 'easeOut' }}
         />
       </div>
     </li>
@@ -62,7 +66,7 @@ function LanguageBar({ language, index, isInView }: LanguageBarProps) {
 
 export function LanguageBars({ languages }: { languages: LanguageStat[] }) {
   const ref = useRef<HTMLUListElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-10% 0px' });
+  const isInView = useInView(ref, { margin: '-10% 0px' });
 
   return (
     <ul ref={ref} className="flex flex-col gap-4">
