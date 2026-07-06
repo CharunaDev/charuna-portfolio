@@ -35,9 +35,27 @@ export function TimelineItem({ entry, index }: TimelineItemProps) {
           <p className="text-accent text-xs font-medium tracking-wide uppercase">{entry.period}</p>
           <h3 className="text-foreground mt-1 text-lg font-semibold">{entry.role}</h3>
           <p className="text-muted text-sm">{entry.company}</p>
-          <ul className="text-muted mt-3 flex flex-col gap-2 text-sm leading-relaxed">
+          <ul className="text-muted mt-3 flex flex-col gap-3 text-sm leading-relaxed">
             {entry.highlights.map((point) => (
-              <li key={point}>{point}</li>
+              <li key={point.text}>
+                <p>{point.text}</p>
+                {point.tags.length > 0 && (
+                  <ul
+                    className={`mt-2 flex flex-wrap gap-1.5 ${
+                      isRight ? '' : 'md:justify-end'
+                    }`}
+                  >
+                    {point.tags.map((tag) => (
+                      <li
+                        key={tag}
+                        className="bg-surface-elevated text-muted rounded-full px-2.5 py-0.5 text-xs"
+                      >
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
             ))}
           </ul>
         </motion.div>

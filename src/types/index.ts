@@ -1,10 +1,15 @@
 import type { IconType } from 'react-icons';
 
+export interface ExperienceHighlight {
+  text: string;
+  tags: string[];
+}
+
 export interface ExperienceEntry {
   role: string;
   company: string;
   period: string;
-  highlights: string[];
+  highlights: ExperienceHighlight[];
 }
 
 export interface ProjectEntry {
