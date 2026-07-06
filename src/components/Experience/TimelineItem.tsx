@@ -48,7 +48,7 @@ export function TimelineItem({ entry, index }: TimelineItemProps) {
                     {point.tags.map((tag) => (
                       <li
                         key={tag}
-                        className="bg-surface-elevated text-muted rounded-full px-2.5 py-0.5 text-xs"
+                        className="bg-surface-elevated text-muted border-accent/30 rounded-full border px-2.5 py-0.5 text-xs"
                       >
                         {tag}
                       </li>
