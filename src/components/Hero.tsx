@@ -33,10 +33,11 @@ export function Hero() {
         </div>
         <div className="border-border bg-surface relative mx-auto aspect-square w-56 overflow-hidden rounded-3xl border shadow-[0_0_60px_-15px_rgba(139,92,246,0.5)] sm:w-72">
           <Image
-            src="/profile-placeholder.svg"
+            src="/profile.jpg"
             alt="Charuna Amarasinghe"
             fill
             sizes="(max-width: 640px) 224px, 288px"
+            className="object-cover"
             priority
           />
         </div>
